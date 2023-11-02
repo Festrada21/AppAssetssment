@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Controllers
@@ -18,7 +19,7 @@ namespace App.Controllers
         {
             return _context.Clientes != null ?
                         View(await _context.Clientes.ToListAsync()) :
-                        Problem("Entity set 'DbappContext.Clientes'  is null.");
+                        Problem("Listado vacio por el momento");
         }
 
         // GET: Clientes/Details/5
@@ -42,6 +43,7 @@ namespace App.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            ViewData["Bool"] = new SelectList(new List<string> { "true", "false" });
             return View();
         }
 
@@ -52,10 +54,12 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
+                //cliente.EsClienteCable = if(cliente.EsClienteCable = "si";
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Bool"] = new SelectList(new List<string> { "true", "false" });
             return View(cliente);
         }
 
@@ -72,6 +76,7 @@ namespace App.Controllers
             {
                 return NotFound();
             }
+            ViewData["Bool"] = new SelectList(new List<string> { "true", "false" });
             return View(cliente);
         }
 
@@ -105,6 +110,7 @@ namespace App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Bool"] = new SelectList(new List<string> { "true", "false" });
             return View(cliente);
         }
 

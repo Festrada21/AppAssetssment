@@ -45,12 +45,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="EsClienteCable" class="control-label"></label>
-                <input asp-for="EsClienteCable" class="form-control" />
+                <select asp-for="EsClienteCable" class="form-control" asp-items="@(ViewData["Bool"] as SelectList)"></select>
                 <span asp-validation-for="EsClienteCable" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EsClienteInternet" class="control-label"></label>
-                <input asp-for="EsClienteInternet" class="form-control" />
+                <select asp-for="EsClienteInternet" class="form-control" asp-items="@(ViewData["Bool"] as SelectList)"></select>
                 <span asp-validation-for="EsClienteInternet" class="text-danger"></span>
             </div>
             <div class="form-group">
